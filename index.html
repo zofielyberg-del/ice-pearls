@@ -470,6 +470,9 @@
     }
 
     // ================= SÖKNING / FORMULÄR =================
+    const SUPABASE_URL = 'https://mavozooclmpfspznrwun.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_GYb_4HfTwWhbDSihMcRnWw_tDp2bDqF';
+
     async function handleApply(e) {
       e.preventDefault();
       const ssoName = document.getElementById('appSsoName').value.trim();
@@ -484,17 +487,39 @@
       submitBtn.disabled = true;
       submitBtn.innerText = 'Skickar...';
 
+      // 1. Spara direkt till Supabase molndatabas
+      try {
+        await fetch(`${SUPABASE_URL}/rest/v1/applications`, {
+          method: 'POST',
+          headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': `Bearer ${SUPABASE_KEY}`,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=representation'
+          },
+          body: JSON.stringify({
+            sso_name: ssoName,
+            discord: discord,
+            age: age,
+            level: level,
+            motivation: motivation,
+            status: 'Ny'
+          })
+        });
+      } catch (err) {
+        console.warn('Supabase anslutningsfel:', err);
+      }
+
+      // 2. Skicka till serverless API som backup
       try {
         await fetch('/api/apply', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         });
-      } catch (err) {
-        console.warn('API ej tillgängligt:', err);
-      }
+      } catch (err) {}
 
-      // Spara även lokalt
+      // 3. Spara lokalt i webbläsaren som backup
       let apps = JSON.parse(localStorage.getItem('ice_pearls_applications') || '[]');
       apps.unshift({
         id: 'local_' + Date.now(),
