@@ -147,17 +147,26 @@
       container.innerHTML = '<p class="text-center py-10 text-xs text-[#8F7480]">Hämtar ansökningar...</p>';
 
       let apps = [];
+      const localApps = getLocalApps();
+
       try {
         const res = await fetch('/api/applications', {
           headers: { 'Authorization': `Bearer ${currentAuth}` }
         });
         if (res.ok) {
-          apps = await res.json();
+          const remoteApps = await res.json();
+          // Slå ihop fjärransökningar och lokala ansökningar så inget tappas bort
+          const map = new Map();
+          [...remoteApps, ...localApps].forEach(a => {
+            const key = a.id || (a.ssoName || a.sso_name) + (a.submittedAt || a.created_at);
+            map.set(key, a);
+          });
+          apps = Array.from(map.values());
         } else {
-          apps = getLocalApps();
+          apps = localApps;
         }
       } catch (e) {
-        apps = getLocalApps();
+        apps = localApps;
       }
 
       renderApps(apps);
