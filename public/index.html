@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="sv" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ice Pearls • Vuxenklubb på Star Stable</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap');
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #FAF8F8;
+      color: #4A4045;
+    }
+
+    .font-serif-elegant {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+    }
+
+    .pearl-gradient {
+      background: linear-gradient(135deg, #FFFFFF 0%, #FFF5F7 50%, #F9F6F0 100%);
+    }
+
+    .pearl-card {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(244, 203, 214, 0.5);
+      box-shadow: 0 10px 30px -10px rgba(230, 180, 195, 0.22);
+    }
+
+    .pearl-badge {
+      background: linear-gradient(120deg, #FFFFFF, #FFE4EC);
+      border: 1px solid #FAD2E1;
+    }
+
+    .shimmer-text {
+      background: linear-gradient(90deg, #6B4E57 0%, #D8829D 50%, #6B4E57 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .photo-card {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .photo-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 30px -8px rgba(234, 169, 188, 0.4);
+    }
+  </style>
+</head>
+<body class="bg-[#FAF7F7] text-[#4A4045] antialiased selection:bg-[#FAD2E1] selection:text-[#633346]">
+
+  <!-- Topp-notis -->
+  <div class="bg-gradient-to-r from-[#FFF0F4] via-[#FFFFFF] to-[#FFF0F4] text-center py-2 text-xs font-medium tracking-widest uppercase border-b border-[#F7D8E2] text-[#8C5D6F]">
+    ✦ Server: Air Star • Grundad Mars 2026 • 18+ Vuxenklubb (~17 medlemmar) ✦
+  </div>
+
+  <!-- Huvudnavigering med luftig och elegant layout -->
+  <header class="sticky top-0 z-40 bg-[#FFFFFF]/95 backdrop-blur-md border-b border-[#F3E2E6] transition-all">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 h-24 flex items-center justify-between gap-8">
+      
+      <!-- Logo med den transparenta, mjuka hästikonen -->
+      <a href="#" class="flex items-center gap-3.5 group shrink-0">
+        <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-[#FFF0F4] via-[#FFFFFF] to-[#FFF5F8] border border-[#FAD8E4] flex items-center justify-center p-2 shadow-[0_2px_12px_rgba(247,202,216,0.35)] group-hover:scale-105 group-hover:border-[#F4ADC3] transition-all">
+          <img src="horse-logo.png" alt="Ice Pearls Hästikon" class="w-full h-full object-contain filter contrast-105 transition-transform group-hover:rotate-[-2deg]">
+        </div>
+        <div>
+          <span class="font-serif-elegant text-2xl tracking-wider font-semibold uppercase text-[#543843] block leading-none">Ice Pearls</span>
+          <span class="text-[10px] tracking-[0.25em] text-[#A27B8B] uppercase font-medium">Star Stable Vuxenklubb</span>
+        </div>
+      </a>
+
+      <!-- Meny med gott om luft och utrymme -->
+      <nav class="hidden md:flex items-center gap-8 lg:gap-11 text-sm font-medium text-[#654D58]">
+        <a href="#om-oss" class="hover:text-[#D87D9A] transition-colors py-1">Om klubben</a>
+        <a href="#galleri" class="hover:text-[#D87D9A] transition-colors py-1">Bilder</a>
+        <a href="#roller" class="hover:text-[#D87D9A] transition-colors py-1">Roller & Mästare</a>
+        <a href="#ledning" class="hover:text-[#D87D9A] transition-colors py-1">Ledning</a>
+        <a href="#klubboutfit" class="hover:text-[#D87D9A] transition-colors py-1">Stil & Färg</a>
+      </nav>
+
+      <!-- Ansök-knapp -->
+      <div class="flex items-center shrink-0">
+        <a href="#ansok" class="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-gradient-to-r from-[#FAD2E1] to-[#F7B6CD] text-[#522938] text-xs font-semibold tracking-wider uppercase shadow-sm hover:opacity-95 hover:shadow-md transition-all">
+          <span>Bli medlem</span>
+          <span>→</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero-sektion -->
+  <section class="relative overflow-hidden pt-14 pb-20 px-6">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-tr from-[#FFE8F0] via-[#FFF9FA] to-[#FFF0F5] rounded-full blur-3xl -z-10 opacity-70"></div>
+    
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full pearl-badge text-xs font-medium tracking-widest uppercase text-[#885A6C] mb-8">
+        <span>❄️</span>
+        <span>Gemenskap • Vänskap • Inga måsten</span>
+        <span>🤍</span>
+      </div>
+
+      <h1 class="font-serif-elegant text-5xl md:text-7xl font-light text-[#3F2B33] leading-tight mb-6 tracking-tight">
+        Där elegans möter <br>
+        <span class="italic font-normal shimmer-text">tidlös gemenskap</span>
+      </h1>
+
+      <p class="text-base md:text-lg text-[#735D66] font-light max-w-2xl mx-auto leading-relaxed mb-6">
+        Välkommen till <strong class="font-medium text-[#543843]">Ice Pearls</strong> — en avslappnad vuxenklubb (18+) på Airstar med cirka 17 medlemmar. Vi spelar när vi har tid och lust, med full respekt för att livet och vardagen kommer först.
+      </p>
+
+      <div class="flex flex-wrap items-center justify-center gap-4 mb-12">
+        <a href="#ansok" class="px-8 py-3.5 rounded-full bg-[#EAA9BC] hover:bg-[#E397AC] text-white text-xs font-semibold tracking-wider uppercase shadow-sm hover:shadow-md transition-all">
+          Skicka intresseanmälan ✨
+        </a>
+        <a href="#galleri" class="px-8 py-3.5 rounded-full bg-white hover:bg-[#FFF5F8] text-[#694F5B] border border-[#F2D1DC] text-xs font-semibold tracking-wider uppercase transition-all shadow-sm">
+          Se våra bilder
+        </a>
+      </div>
+
+      <!-- Hero Bild-ram: Rosa picknick & häng -->
+      <div class="relative max-w-3xl mx-auto rounded-3xl p-2.5 bg-white border border-[#F5D4E0] shadow-xl mb-12 overflow-hidden group">
+        <img src="images/gallery-3.jpg" alt="Ice Pearls gemensam picknick på Jorvik" class="w-full h-72 md:h-96 object-cover rounded-2xl group-hover:scale-[1.01] transition-transform duration-500">
+        <div class="absolute bottom-6 left-6 right-6 p-4 rounded-xl bg-white/90 backdrop-blur-md border border-[#FAD2E1] flex items-center justify-between">
+          <div class="text-left">
+            <span class="text-[10px] uppercase tracking-widest font-semibold text-[#A26C81] block">Gemenskap & Fika</span>
+            <span class="font-serif-elegant text-lg md:text-xl font-bold text-[#453039]">Avslappnade stunder tillsammans</span>
+          </div>
+          <span class="px-3 py-1 rounded-full bg-[#FFEBF2] text-[#8C5267] text-xs font-medium">100% Mys</span>
+        </div>
+      </div>
+
+      <!-- Kort om oss / Snabböversikt -->
+      <div class="pearl-card p-6 md:p-8 rounded-3xl max-w-3xl mx-auto border border-[#F7D6E2] text-left">
+        <h3 class="font-serif-elegant text-2xl font-semibold text-[#48333D] text-center mb-6">Kort om Ice Pearls</h3>
+        <div class="grid sm:grid-cols-2 gap-4 text-xs text-[#5D4751]">
+          <div class="flex items-center gap-3 p-3 rounded-2xl bg-white/70 border border-[#FCE6EE]">
+            <span class="text-lg">🤍</span>
+            <span><strong>Vuxenklubb, 18+</strong> (alla medlemmar är 20+)</span>
+          </div>
+          <div class="flex items-center gap-3 p-3 rounded-2xl bg-white/70 border border-[#FCE6EE]">
+            <span class="text-lg">🤍</span>
+            <span><strong>Trevligt & avslappnat gäng</strong> som vill bli fler</span>
+          </div>
+          <div class="flex items-center gap-3 p-3 rounded-2xl bg-white/70 border border-[#FCE6EE]">
+            <span class="text-lg">🤍</span>
+            <span><strong>Inga event- eller aktivitetskrav</strong></span>
+          </div>
+          <div class="flex items-center gap-3 p-3 rounded-2xl bg-white/70 border border-[#FCE6EE]">
+            <span class="text-lg">🤍</span>
+            <span><strong>Vi spelar när vi har tid och lust</strong></span>
+          </div>
+          <div class="flex items-center gap-3 p-3 rounded-2xl bg-white/70 border border-[#FCE6EE] sm:col-span-2">
+            <span class="text-lg">🤍</span>
+            <span><strong>Discord finns</strong> för den som vill, men är helt frivilligt</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BILDGALLERI / VÅRA STUNDER -->
+  <section id="galleri" class="py-20 px-6 bg-gradient-to-b from-[#FAF7F7] via-[#FFF9FB] to-[#FAF7F7]">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-14">
+        <span class="text-xs uppercase tracking-[0.25em] text-[#B27F93] font-semibold">Våra Stunder</span>
+        <h2 class="font-serif-elegant text-4xl md:text-5xl font-light text-[#3D2931] mt-2">Gemenskap & Minnen</h2>
+        <div class="w-12 h-[1px] bg-[#E8A5BA] mx-auto mt-4"></div>
+        <p class="text-sm text-[#7D6772] mt-3 max-w-lg mx-auto">Från mysiga picknickar och danskvällar till långritter i Jorviks magiska världar.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        
+        <!-- Bild 1: Pandoria Ritt -->
+        <div class="photo-card pearl-card p-3 rounded-3xl bg-white border border-[#F6DCE5] overflow-hidden group">
+          <div class="overflow-hidden rounded-2xl relative aspect-[16/10]">
+            <img src="images/gallery-1.jpg" alt="Långritt i Pandoria" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 cursor-pointer" onclick="openLightbox('images/gallery-1.jpg', 'Äventyrsritt i Pandoria')">
+            <div class="absolute bottom-3 left-3 px-3 py-1 rounded-full bg-black/40 backdrop-blur-md text-white text-[11px] font-medium">
+              ❄️ Äventyrsritt i Pandoria
+            </div>
+          </div>
+          <div class="p-3">
+            <h4 class="font-serif-elegant text-xl font-bold text-[#453039]">Magiska Ritter</h4>
+            <p class="text-xs text-[#7A636E] mt-1">Uteritter tillsammans där vi utforskar Jorviks vackraste vyer utan stress eller prestationskrav.</p>
+          </div>
+        </div>
+
+        <!-- Bild 2: Rosa Picknick -->
+        <div class="photo-card pearl-card p-3 rounded-3xl bg-white border border-[#F6DCE5] overflow-hidden group">
+          <div class="overflow-hidden rounded-2xl relative aspect-[16/10]">
+            <img src="images/gallery-3.jpg" alt="Fika och picknick i det gröna" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 cursor-pointer" onclick="openLightbox('images/gallery-3.jpg', 'Rosa fika och picknick')">
+            <div class="absolute bottom-3 left-3 px-3 py-1 rounded-full bg-black/40 backdrop-blur-md text-white text-[11px] font-medium">
+              🍰 Rosa Picknick & Fika
+            </div>
+          </div>
+          <div class="p-3">
+            <h4 class="font-serif-elegant text-xl font-bold text-[#453039]">Mysiga Pratstunder</h4>
+            <p class="text-xs text-[#7A636E] mt-1">Vi samlas, kopplar av och pratar om allt mellan himmel och jord med tårta och gott sällskap.</p>
+          </div>
+        </div>
+
+        <!-- Bild 3: Lek & Skoj i Paviljongen -->
+        <div class="photo-card pearl-card p-3 rounded-3xl bg-white border border-[#F6DCE5] overflow-hidden group">
+          <div class="overflow-hidden rounded-2xl relative aspect-[16/10]">
+            <img src="images/gallery-2.jpg" alt="Lekfull samling i paviljongen" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 cursor-pointer" onclick="openLightbox('images/gallery-2.jpg', 'Lekfull samling i paviljongen')">
+            <div class="absolute bottom-3 left-3 px-3 py-1 rounded-full bg-black/40 backdrop-blur-md text-white text-[11px] font-medium">
+              🎠 Skoj & Skratt
+            </div>
+          </div>
+          <div class="p-3">
+            <h4 class="font-serif-elegant text-xl font-bold text-[#453039]">Lekfullhet</h4>
+            <p class="text-xs text-[#7A636E] mt-1">Att ha roligt och släppa all vardagsstress är kärnan i varför vi spelar tillsammans.</p>
+          </div>
+        </div>
+
+        <!-- Bild 4: Dans & Fest -->
+        <div class="photo-card pearl-card p-3 rounded-3xl bg-white border border-[#F6DCE5] overflow-hidden group">
+          <div class="overflow-hidden rounded-2xl relative aspect-[16/10]">
+            <img src="images/gallery-4.png" alt="Dansgolv och fest" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 cursor-pointer" onclick="openLightbox('images/gallery-4.png', 'Fest på dansgolvet')">
+            <div class="absolute bottom-3 left-3 px-3 py-1 rounded-full bg-black/40 backdrop-blur-md text-white text-[11px] font-medium">
+              🪩 Danskväll
+            </div>
+          </div>
+          <div class="p-3">
+            <h4 class="font-serif-elegant text-xl font-bold text-[#453039]">Festliga Kvällar</h4>
+            <p class="text-xs text-[#7A636E] mt-1">När kvällen kommer drar vi igång musiken på dansgolvet och firar helgen ihop!</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Om oss sektion -->
+  <section id="om-oss" class="py-20 px-6">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-14">
+        <span class="text-xs uppercase tracking-[0.25em] text-[#B27F93] font-semibold">Om Ice Pearls</span>
+        <h2 class="font-serif-elegant text-4xl md:text-5xl font-light text-[#3D2931] mt-2">En klubb utan måsten</h2>
+        <div class="w-12 h-[1px] bg-[#E8A5BA] mx-auto mt-4"></div>
+      </div>
+
+      <div class="pearl-card p-8 md:p-12 rounded-3xl space-y-6 text-[#6B5560] leading-relaxed text-sm md:text-base font-light">
+        <p>
+          <strong class="font-medium text-[#48323C]">Ice Pearls</strong> är en klubb på Airstar med ungefär 17 medlemmar i dagsläget. Vi är ett trevligt gäng som gärna vill bli fler! 
+        </p>
+        <p>
+          Vi är alla över 20 år och söker därför främst vuxna spelare som vill ha en avslappnad klubb att vara en del av. Hos oss finns <strong>inga krav på aktivitet eller deltagande i event</strong>. Vi spelar SSO när det passar oss och tycker att det ska vara roligt att vara med i en klubb utan en massa måsten. Väldigt skönt när livet och vardagen tar över! 🛋️✨
+        </p>
+        <p>
+          Vi satsar helhjärtat på <strong>gemenskap, vänskap och kravlöst häng</strong>. Oavsett om du loggar in dagligen eller bara några timmar under helgen är du alltid lika välkommen i gänget.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Roller & Mästare sektion -->
+  <section id="roller" class="py-20 px-6 bg-gradient-to-b from-[#FAF7F7] via-[#FFF9FB] to-[#FAF7F7]">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-14">
+        <span class="text-xs uppercase tracking-[0.25em] text-[#B27F93] font-semibold">Vår Filosofi</span>
+        <h2 class="font-serif-elegant text-4xl md:text-5xl font-light text-[#3D2931] mt-2">Ingen rangordning – Alla är Mästare</h2>
+        <div class="w-12 h-[1px] bg-[#E8A5BA] mx-auto mt-4"></div>
+        <p class="text-sm text-[#7D6772] mt-3 max-w-xl mx-auto">
+          Hos oss avgör inga roller vem som får bestämma eller ta initiativ.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 items-stretch">
+        <div class="pearl-card p-8 rounded-3xl flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-[#FFEBF2] text-2xl flex items-center justify-center border border-[#FAD3E2] mb-6">
+              👑
+            </div>
+            <h3 class="font-serif-elegant text-2xl font-semibold text-[#443039] mb-3">Ledningen håller i strukturen</h3>
+            <p class="text-xs md:text-sm text-[#705A65] leading-relaxed">
+              Vi har en klubbägare och en klubbledare som sköter klubbens administration, tar emot nya ansökningar och ser till att klubben rullar harmoniskt.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-[#F5DCE5] text-xs font-medium text-[#8F5B70]">
+            ✦ Trygg och tydlig grund för alla
+          </div>
+        </div>
+
+        <div class="pearl-card p-8 rounded-3xl flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-[#FFEBF2] text-2xl flex items-center justify-center border border-[#FAD3E2] mb-6">
+              ✨
+            </div>
+            <h3 class="font-serif-elegant text-2xl font-semibold text-[#443039] mb-3">Medlemmar har rollen Mästare</h3>
+            <p class="text-xs md:text-sm text-[#705A65] leading-relaxed">
+              Som mästare får du gärna starta egna event och aktiviteter precis när du känner för det — och alla som är intresserade hakar på! Du behöver inte klättra i något rangsystem för att bidra och ha kul.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-[#F5DCE5] text-xs font-medium text-[#8F5B70]">
+            ✦ Frihet, delaktighet och egna initiativ
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ledning sektion -->
+  <section id="ledning" class="py-20 px-6">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-14">
+        <span class="text-xs uppercase tracking-[0.25em] text-[#B27F93] font-semibold">Kontakt</span>
+        <h2 class="font-serif-elegant text-4xl md:text-5xl font-light text-[#3D2931] mt-2">Klubbledningen</h2>
+        <div class="w-12 h-[1px] bg-[#E8A5BA] mx-auto mt-4"></div>
+        <p class="text-xs text-[#7F6A74] mt-3">Grundat i mars 2026 av Scarlett & Linnea</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-8 max-w-2xl mx-auto">
+        <!-- Scarlett -->
+        <div class="pearl-card p-8 rounded-3xl text-center hover:-translate-y-1 transition-all duration-300">
+          <div class="w-20 h-20 mx-auto rounded-full pearl-gradient border-2 border-[#F9C9DA] flex items-center justify-center text-3xl shadow-sm mb-4 bg-white">
+            👑
+          </div>
+          <span class="inline-block px-3 py-0.5 rounded-full bg-[#FFEBF1] text-[#965A70] text-[10px] font-semibold uppercase tracking-wider mb-2">Klubbägare</span>
+          <h3 class="font-serif-elegant text-2xl font-bold text-[#453039]">Scarlett Goldblanket</h3>
+          <p class="text-xs text-[#7F6A74] mt-2">Ansvarar för klubben, gemenskapen och välkomnar nya pärlor.</p>
+        </div>
+
+        <!-- Linnea -->
+        <div class="pearl-card p-8 rounded-3xl text-center hover:-translate-y-1 transition-all duration-300">
+          <div class="w-20 h-20 mx-auto rounded-full pearl-gradient border-2 border-[#F9C9DA] flex items-center justify-center text-3xl shadow-sm mb-4 bg-white">
+            🩰
+          </div>
+          <span class="inline-block px-3 py-0.5 rounded-full bg-[#FFEBF1] text-[#965A70] text-[10px] font-semibold uppercase tracking-wider mb-2">Klubbledare</span>
+          <h3 class="font-serif-elegant text-2xl font-bold text-[#453039]">Linnea Goldcamp</h3>
+          <p class="text-xs text-[#7F6A74] mt-2">Ansvarar för klubben, stämningen och aktiviteter när andan faller på.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Klubboutfit & Häst sektion -->
+  <section id="klubboutfit" class="py-20 px-6 bg-gradient-to-b from-[#FAF7F7] via-[#FFF9FB] to-[#FAF7F7]">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-14">
+        <span class="text-xs uppercase tracking-[0.25em] text-[#B27F93] font-semibold">Vår Estetik</span>
+        <h2 class="font-serif-elegant text-4xl md:text-5xl font-light text-[#3D2931] mt-2">Babyrosa, Pärlvitt & Vitt</h2>
+        <div class="w-12 h-[1px] bg-[#E8A5BA] mx-auto mt-4"></div>
+        <p class="text-sm text-[#7C6670] mt-3">En tidlös och mjuk färgpalett som speglar Ice Pearls.</p>
+      </div>
+
+      <div class="pearl-card p-8 md:p-10 rounded-3xl border border-[#F6DCE5]">
+        <div class="grid md:grid-cols-3 gap-6 text-center">
+          <div class="p-5 rounded-2xl bg-white border border-[#FBE3EC]">
+            <div class="w-12 h-12 rounded-full mx-auto mb-3 bg-[#FAD2E1] border border-[#F3B7CC]"></div>
+            <h4 class="font-serif-elegant text-lg font-semibold text-[#48333D]">Babyrosa</h4>
+            <p class="text-xs text-[#7D6772] mt-1">Mjuk pudrig nyans för schabrak, tröja eller tävlingskavaj.</p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-white border border-[#FBE3EC]">
+            <div class="w-12 h-12 rounded-full mx-auto mb-3 pearl-gradient border border-[#FAD2E1] shadow-inner"></div>
+            <h4 class="font-serif-elegant text-lg font-semibold text-[#48333D]">Pärlvit</h4>
+            <p class="text-xs text-[#7D6772] mt-1">Skimrande elegans på hästens skimmelpäls och detaljer.</p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-white border border-[#FBE3EC]">
+            <div class="w-12 h-12 rounded-full mx-auto mb-3 bg-[#FFFFFF] border border-[#E8CCD7]"></div>
+            <h4 class="font-serif-elegant text-lg font-semibold text-[#48333D]">Krispigt Vitt</h4>
+            <p class="text-xs text-[#7D6772] mt-1">Stilrena vita ridbyxor, lindor och rena linjer.</p>
+          </div>
+        </div>
+        <div class="text-center mt-6 text-xs text-[#876F79]">
+          Inga krav på att ha outfiten direkt — vi matchar när vi vill för gemensamma bilder och mysritter! 🌸
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ansökningsformulär sektion -->
+  <section id="ansok" class="py-20 px-6">
+    <div class="max-w-2xl mx-auto">
+      <div class="pearl-card p-8 md:p-12 rounded-3xl border border-[#F8D2DF] shadow-md relative">
+        <div class="text-center mb-8">
+          <span class="text-xs uppercase tracking-[0.25em] text-[#B27F93] font-semibold">Bli en del av gänget</span>
+          <h2 class="font-serif-elegant text-4xl md:text-5xl font-light text-[#3D2931] mt-2">Gå med i Ice Pearls</h2>
+          <div class="w-12 h-[1px] bg-[#E8A5BA] mx-auto mt-4"></div>
+          <p class="text-xs text-[#7D6772] mt-3">Skicka en kort intresseanmälan nedan så hör vi av oss!</p>
+        </div>
+
+        <form id="applicationForm" class="space-y-4" onsubmit="handleApply(event)">
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-[#69525C] mb-1.5">Ditt SSO-Namn *</label>
+              <input type="text" id="appSsoName" required placeholder="t.ex. Chloe Winterbell" class="w-full px-4 py-3 rounded-xl bg-white border border-[#F2D1DC] text-xs focus:outline-none focus:border-[#E597AE] transition-colors">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-[#69525C] mb-1.5">Discord <span class="text-[#A78290] font-normal">(valfritt)</span></label>
+              <input type="text" id="appDiscord" placeholder="t.ex. chloe#1234" class="w-full px-4 py-3 rounded-xl bg-white border border-[#F2D1DC] text-xs focus:outline-none focus:border-[#E597AE] transition-colors">
+            </div>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-[#69525C] mb-1.5">Din Ålder * (18+)</label>
+              <input type="text" id="appAge" required placeholder="t.ex. 22 år" class="w-full px-4 py-3 rounded-xl bg-white border border-[#F2D1DC] text-xs focus:outline-none focus:border-[#E597AE] transition-colors">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-[#69525C] mb-1.5">Din Level i SSO *</label>
+              <input type="text" id="appLevel" required placeholder="t.ex. Level 19" class="w-full px-4 py-3 rounded-xl bg-white border border-[#F2D1DC] text-xs focus:outline-none focus:border-[#E597AE] transition-colors">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-[#69525C] mb-1.5">Kort om dig och varför du vill gå med *</label>
+            <textarea id="appMotivation" rows="3" required placeholder="Berätta gärna kort om dig själv och vad du söker i en vuxenklubb..." class="w-full px-4 py-3 rounded-xl bg-white border border-[#F2D1DC] text-xs focus:outline-none focus:border-[#E597AE] transition-colors"></textarea>
+          </div>
+
+          <button type="submit" id="submitBtn" class="w-full py-4 rounded-xl bg-gradient-to-r from-[#F7BACD] via-[#F4A8BF] to-[#F193AF] text-white text-xs font-semibold uppercase tracking-widest hover:opacity-95 shadow-md transition-all">
+            Skicka ansökan ✨
+          </button>
+        </form>
+
+        <!-- Bekräftelse -->
+        <div id="thankYouMessage" class="hidden text-center py-10">
+          <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-[#FFEAF1] text-3xl flex items-center justify-center border border-[#FAD0E0]">
+            💌
+          </div>
+          <h3 class="font-serif-elegant text-3xl font-semibold text-[#48333D] mb-2">Tack för din intresseanmälan!</h3>
+          <p class="text-xs text-[#7A636E] max-w-md mx-auto leading-relaxed">
+            Vi har tagit emot dina uppgifter. Scarlett & Linnea går igenom ansökan och hör av sig i spelet eller på Discord så snart som möjligt! ❄️🤍
+          </p>
+          <button onclick="resetForm()" class="mt-6 px-6 py-2 rounded-full border border-[#FAD0E0] text-xs text-[#8A5B6F] hover:bg-[#FFF2F6] transition-all">
+            Skicka en till anmälan
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sidfot -->
+  <footer class="bg-white border-t border-[#F2D9E2] py-12 px-6 text-center">
+    <div class="max-w-4xl mx-auto flex flex-col items-center gap-3">
+      <div class="flex items-center gap-2">
+        <img src="horse-logo.png" alt="Hästikon" class="w-6 h-6 object-contain">
+        <span class="font-serif-elegant text-xl tracking-widest font-semibold uppercase text-[#543843]">Ice Pearls</span>
+        <span class="text-sm">❄️</span>
+      </div>
+      <p class="text-xs text-[#8C7681]">En vuxenklubb (18+) på Star Stable Online • Airstar • Grundad mars 2026</p>
+      <p class="text-[11px] text-[#C4ABB6] mt-2">Ice Pearls är en fristående vuxenklubb på Star Stable Online (SSO).</p>
+    </div>
+  </footer>
+
+  <!-- ==================== LIGHTBOX MODAL FÖR BILDER ==================== -->
+  <div id="lightboxModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4 cursor-pointer" onclick="closeLightbox()">
+    <div class="max-w-4xl max-h-[90vh] relative" onclick="event.stopPropagation()">
+      <button onclick="closeLightbox()" class="absolute -top-12 right-0 text-white text-2xl hover:text-pink-200">
+        ✕ Stäng
+      </button>
+      <img id="lightboxImg" src="" alt="Förstoring" class="max-w-full max-h-[85vh] rounded-2xl shadow-2xl border border-white/20">
+      <p id="lightboxCaption" class="text-center text-white text-xs mt-3 font-medium tracking-wider"></p>
+    </div>
+  </div>
+
+  <script>
+    // ================= LIGHTBOX FÖR BILDER =================
+    function openLightbox(src, caption) {
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightboxCaption').innerText = caption || '';
+      document.getElementById('lightboxModal').classList.remove('hidden');
+    }
+    function closeLightbox() {
+      document.getElementById('lightboxModal').classList.add('hidden');
+    }
+
+    // ================= SÖKNING / FORMULÄR =================
+    async function handleApply(e) {
+      e.preventDefault();
+      const ssoName = document.getElementById('appSsoName').value.trim();
+      const discord = document.getElementById('appDiscord').value.trim() || '-';
+      const age = document.getElementById('appAge').value.trim();
+      const level = document.getElementById('appLevel').value.trim();
+      const motivation = document.getElementById('appMotivation').value.trim();
+
+      const payload = { ssoName, discord, age, level, motivation };
+
+      const submitBtn = document.getElementById('submitBtn');
+      submitBtn.disabled = true;
+      submitBtn.innerText = 'Skickar...';
+
+      try {
+        await fetch('/api/apply', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+      } catch (err) {
+        console.warn('API ej tillgängligt:', err);
+      }
+
+      // Spara även lokalt
+      let apps = JSON.parse(localStorage.getItem('ice_pearls_applications') || '[]');
+      apps.unshift({
+        id: 'local_' + Date.now(),
+        submittedAt: new Date().toLocaleDateString('sv-SE') + ' ' + new Date().toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' }),
+        ...payload,
+        status: 'Ny'
+      });
+      localStorage.setItem('ice_pearls_applications', JSON.stringify(apps));
+
+      document.getElementById('applicationForm').classList.add('hidden');
+      document.getElementById('thankYouMessage').classList.remove('hidden');
+      submitBtn.disabled = false;
+      submitBtn.innerText = 'Skicka ansökan ✨';
+    }
+
+    function resetForm() {
+      document.getElementById('applicationForm').reset();
+      document.getElementById('applicationForm').classList.remove('hidden');
+      document.getElementById('thankYouMessage').classList.add('hidden');
+    }
+  </script>
+</body>
+</html>
