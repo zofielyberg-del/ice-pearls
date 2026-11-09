@@ -1,3 +1,6 @@
+const SUPABASE_URL = process.env.SUPABASE_URL || 'https://mavozooclmpfspznrwun.supabase.co';
+const SUPABASE_KEY = process.env.SUPABASE_KEY || process.env.SUPABASE_PUBLISHABLE_KEY || 'sb_publishable_GYb_4HfTwWhbDSihMcRnWw_tDp2bDqF';
+
 module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -18,36 +21,34 @@ module.exports = async (req, res) => {
       return res.status(400).json({ error: 'Obligatoriska fält saknas' });
     }
 
-    const webhookUrl = process.env.DISCORD_WEBHOOK_URL;
-    const supabaseUrl = process.env.SUPABASE_URL;
-    const supabaseKey = process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_ANON_KEY;
-
-    // 1. Spara till Supabase om konfigurerat
-    if (supabaseUrl && supabaseKey) {
-      try {
-        await fetch(`${supabaseUrl}/rest/v1/applications`, {
-          method: 'POST',
-          headers: {
-            'apikey': supabaseKey,
-            'Authorization': `Bearer ${supabaseKey}`,
-            'Content-Type': 'application/json',
-            'Prefer': 'return=representation'
-          },
-          body: JSON.stringify({
-            sso_name: ssoName,
-            discord: discord || '-',
-            age: age,
-            level: level || '-',
-            motivation: motivation || '-',
-            status: 'Ny'
-          })
-        });
-      } catch (dbErr) {
-        console.error('Kunde inte spara till Supabase:', dbErr);
+    // 1. Spara till Supabase
+    try {
+      const dbRes = await fetch(`${SUPABASE_URL}/rest/v1/applications`, {
+        method: 'POST',
+        headers: {
+          'apikey': SUPABASE_KEY,
+          'Authorization': `Bearer ${SUPABASE_KEY}`,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=representation'
+        },
+        body: JSON.stringify({
+          sso_name: ssoName,
+          discord: discord || '-',
+          age: age,
+          level: level || '-',
+          motivation: motivation || '-',
+          status: 'Ny'
+        })
+      });
+      if (!dbRes.ok) {
+        console.error('Supabase error:', await dbRes.text());
       }
+    } catch (dbErr) {
+      console.error('Kunde inte spara till Supabase:', dbErr);
     }
 
     // 2. Skicka till Discord Webhook om konfigurerat
+    const webhookUrl = process.env.DISCORD_WEBHOOK_URL;
     if (webhookUrl) {
       try {
         const embedPayload = {
@@ -55,7 +56,7 @@ module.exports = async (req, res) => {
           embeds: [
             {
               title: '✨ Ny Medlemsansökan till Ice Pearls! ✨',
-              color: 0xFAD2E1, // Babyrosa hex
+              color: 0xFAD2E1,
               description: `En ny ansökan har inkommit via hemsidan.`,
               fields: [
                 { name: '👤 SSO-Namn', value: String(ssoName), inline: true },
@@ -65,7 +66,7 @@ module.exports = async (req, res) => {
                 { name: '📝 Motivering', value: String(motivation || 'Ingen motivering angiven') }
               ],
               footer: {
-                text: 'Ice Pearls • Vuxenklubb 18+ • Airstar'
+                text: 'Ice Pearls • Star Stable Klubb • Airstar'
               },
               timestamp: new Date().toISOString()
             }
@@ -84,7 +85,7 @@ module.exports = async (req, res) => {
 
     return res.status(200).json({
       success: true,
-      message: 'Ansökan mottagen och behandlad!'
+      message: 'Ansökan mottagen och sparad!'
     });
   } catch (error) {
     console.error('Fel vid hantering av ansökan:', error);

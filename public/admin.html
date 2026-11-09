@@ -20,10 +20,6 @@
       font-family: 'Cormorant Garamond', Georgia, serif;
     }
 
-    .pearl-gradient {
-      background: linear-gradient(135deg, #FFFFFF 0%, #FFF5F7 50%, #F9F6F0 100%);
-    }
-
     .pearl-card {
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(14px);
@@ -146,29 +142,20 @@
 
     async function loadApplications() {
       const container = document.getElementById('appsList');
-      container.innerHTML = '<p class="text-center py-10 text-xs text-[#8F7480]">Hämtar ansökningar...</p>';
+      container.innerHTML = '<p class="text-center py-10 text-xs text-[#8F7480]">Hämtar ansökningar från molnet...</p>';
 
       let apps = [];
-      const localApps = getLocalApps();
-
       try {
         const res = await fetch('/api/applications', {
           headers: { 'Authorization': `Bearer ${currentAuth}` }
         });
         if (res.ok) {
-          const remoteApps = await res.json();
-          // Slå ihop fjärransökningar och lokala ansökningar så inget tappas bort
-          const map = new Map();
-          [...remoteApps, ...localApps].forEach(a => {
-            const key = a.id || (a.ssoName || a.sso_name) + (a.submittedAt || a.created_at);
-            map.set(key, a);
-          });
-          apps = Array.from(map.values());
+          apps = await res.json();
         } else {
-          apps = localApps;
+          apps = getLocalApps();
         }
       } catch (e) {
-        apps = localApps;
+        apps = getLocalApps();
       }
 
       renderApps(apps);
@@ -187,7 +174,7 @@
           <div class="pearl-card p-12 text-center rounded-3xl">
             <span class="text-3xl block mb-2">💌</span>
             <p class="text-sm font-semibold text-[#4E3942]">Inga ansökningar inkomna än</p>
-            <p class="text-xs text-[#8C7681] mt-1">Så fort någon skickar in en ansökan på hemsidan visas den här.</p>
+            <p class="text-xs text-[#8C7681] mt-1">Så fort någon skickar in en ansökan på hemsidan visas den här direkt!</p>
           </div>
         `;
         return;
@@ -197,10 +184,10 @@
         <div class="pearl-card p-6 rounded-3xl space-y-4 hover:border-[#E8A5BA] transition-all">
           <div class="flex flex-wrap items-center justify-between gap-3 border-b border-[#F7E2E9] pb-3">
             <div class="flex items-center gap-3">
-              <span class="font-serif-elegant text-2xl font-bold text-[#453039]">${escapeHtml(app.ssoName || app.sso_name)}</span>
+              <span class="font-serif-elegant text-2xl font-bold text-[#453039]">${escapeHtml(app.sso_name || app.ssoName)}</span>
               <span class="px-3 py-1 rounded-full text-xs font-semibold ${getStatusBadgeClass(app.status)}">${escapeHtml(app.status || 'Ny')}</span>
             </div>
-            <span class="text-xs text-[#A68896]">Inskickad: ${escapeHtml(app.submittedAt || app.created_at || '')}</span>
+            <span class="text-xs text-[#A68896]">Inskickad: ${formatDate(app.created_at || app.submittedAt)}</span>
           </div>
 
           <div class="grid sm:grid-cols-3 gap-3 text-xs">
@@ -244,39 +231,41 @@
       return 'bg-[#FFE8F0] text-[#8F556B] border border-[#FAD0E0]';
     }
 
+    function formatDate(raw) {
+      if (!raw) return '';
+      try {
+        const d = new Date(raw);
+        if (isNaN(d.getTime())) return raw;
+        return d.toLocaleDateString('sv-SE') + ' ' + d.toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' });
+      } catch (e) {
+        return raw;
+      }
+    }
+
     async function changeStatus(id, newStatus) {
       try {
-        await fetch(`/api/applications/${id}`, {
+        await fetch('/api/applications', {
           method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${currentAuth}`
           },
-          body: JSON.stringify({ status: newStatus })
+          body: JSON.stringify({ id, status: newStatus })
         });
       } catch (e) {}
 
-      let apps = getLocalApps();
-      const app = apps.find(a => a.id === id);
-      if (app) {
-        app.status = newStatus;
-        localStorage.setItem('ice_pearls_applications', JSON.stringify(apps));
-      }
       loadApplications();
     }
 
     async function removeApp(id) {
       if (!confirm('Vill du verkligen ta bort denna ansökan?')) return;
       try {
-        await fetch(`/api/applications/${id}`, {
+        await fetch(`/api/applications?id=${id}`, {
           method: 'DELETE',
           headers: { 'Authorization': `Bearer ${currentAuth}` }
         });
       } catch (e) {}
 
-      let apps = getLocalApps();
-      apps = apps.filter(a => a.id !== id);
-      localStorage.setItem('ice_pearls_applications', JSON.stringify(apps));
       loadApplications();
     }
 
