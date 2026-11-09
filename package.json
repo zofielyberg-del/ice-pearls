@@ -1,0 +1,8 @@
+{
+  "name": "ice-pearls-sso",
+  "version": "1.0.0",
+  "description": "Officiell hemsida för Star Stable-vuxenklubben Ice Pearls",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
