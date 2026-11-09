@@ -39,6 +39,14 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
+
+    .photo-card {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .photo-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 30px -8px rgba(234, 169, 188, 0.4);
+    }
   </style>
 </head>
 <body class="bg-[#FAF7F7] text-[#4A4045] antialiased selection:bg-[#FAD2E1] selection:text-[#633346]">
@@ -66,9 +74,10 @@
       <!-- Meny -->
       <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-[#6E5560]">
         <a href="#om-oss" class="hover:text-[#D87D9A] transition-colors">Om klubben</a>
+        <a href="#galleri" class="hover:text-[#D87D9A] transition-colors">Bilder & Häng</a>
         <a href="#roller" class="hover:text-[#D87D9A] transition-colors">Våra roller & Mästare</a>
         <a href="#ledning" class="hover:text-[#D87D9A] transition-colors">Ledning</a>
-        <a href="#klubboutfit" class="hover:text-[#D87D9A] transition-colors">Stil & Outfit</a>
+        <a href="#klubboutfit" class="hover:text-[#D87D9A] transition-colors">Stil & Färg</a>
         <button onclick="openAdminModal()" class="text-xs uppercase tracking-wider px-3 py-1.5 rounded-full bg-[#FFF0F5] text-[#935D72] hover:bg-[#FCE3ED] border border-[#F7D4E1] transition-all flex items-center gap-1.5">
           <span>🔒</span> <span>Ledningsportal</span>
         </button>
@@ -88,7 +97,7 @@
   </header>
 
   <!-- Hero-sektion -->
-  <section class="relative overflow-hidden pt-16 pb-24 px-6">
+  <section class="relative overflow-hidden pt-14 pb-20 px-6">
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-tr from-[#FFE8F0] via-[#FFF9FA] to-[#FFF0F5] rounded-full blur-3xl -z-10 opacity-70"></div>
     
     <div class="max-w-4xl mx-auto text-center">
@@ -107,13 +116,25 @@
         Välkommen till <strong class="font-medium text-[#543843]">Ice Pearls</strong> — en avslappnad vuxenklubb (18+) på Airstar med cirka 17 medlemmar. Vi spelar när vi har tid och lust, med full respekt för att livet och vardagen kommer först.
       </p>
 
-      <div class="flex flex-wrap items-center justify-center gap-4 mb-14">
+      <div class="flex flex-wrap items-center justify-center gap-4 mb-12">
         <a href="#ansok" class="px-8 py-3.5 rounded-full bg-[#EAA9BC] hover:bg-[#E397AC] text-white text-xs font-semibold tracking-wider uppercase shadow-sm hover:shadow-md transition-all">
           Skicka intresseanmälan ✨
         </a>
-        <a href="#om-oss" class="px-8 py-3.5 rounded-full bg-white hover:bg-[#FFF5F8] text-[#694F5B] border border-[#F2D1DC] text-xs font-semibold tracking-wider uppercase transition-all shadow-sm">
-          Läs mer om oss
+        <a href="#galleri" class="px-8 py-3.5 rounded-full bg-white hover:bg-[#FFF5F8] text-[#694F5B] border border-[#F2D1DC] text-xs font-semibold tracking-wider uppercase transition-all shadow-sm">
+          Se våra bilder
         </a>
+      </div>
+
+      <!-- Hero Bild-ram: Rosa picknick & häng -->
+      <div class="relative max-w-3xl mx-auto rounded-3xl p-2.5 bg-white border border-[#F5D4E0] shadow-xl mb-12 overflow-hidden group">
+        <img src="images/gallery-3.jpg" alt="Ice Pearls gemensam picknick på Jorvik" class="w-full h-72 md:h-96 object-cover rounded-2xl group-hover:scale-[1.01] transition-transform duration-500">
+        <div class="absolute bottom-6 left-6 right-6 p-4 rounded-xl bg-white/90 backdrop-blur-md border border-[#FAD2E1] flex items-center justify-between">
+          <div class="text-left">
+            <span class="text-[10px] uppercase tracking-widest font-semibold text-[#A26C81] block">Gemenskap & Fika</span>
+            <span class="font-serif-elegant text-lg md:text-xl font-bold text-[#453039]">Avslappnade stunder tillsammans</span>
+          </div>
+          <span class="px-3 py-1 rounded-full bg-[#FFEBF2] text-[#8C5267] text-xs font-medium">100% Mys</span>
+        </div>
       </div>
 
       <!-- Kort om oss / Snabböversikt -->
@@ -146,8 +167,80 @@
     </div>
   </section>
 
+  <!-- BILDGALLERI / VÅRA STUNDER -->
+  <section id="galleri" class="py-20 px-6 bg-gradient-to-b from-[#FAF7F7] via-[#FFF9FB] to-[#FAF7F7]">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-14">
+        <span class="text-xs uppercase tracking-[0.25em] text-[#B27F93] font-semibold">Våra Stunder</span>
+        <h2 class="font-serif-elegant text-4xl md:text-5xl font-light text-[#3D2931] mt-2">Gemenskap & Minnen</h2>
+        <div class="w-12 h-[1px] bg-[#E8A5BA] mx-auto mt-4"></div>
+        <p class="text-sm text-[#7D6772] mt-3 max-w-lg mx-auto">Från mysiga picknickar och danskvällar till långritter i Jorviks magiska världar.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        
+        <!-- Bild 1: Pandoria Ritt -->
+        <div class="photo-card pearl-card p-3 rounded-3xl bg-white border border-[#F6DCE5] overflow-hidden group">
+          <div class="overflow-hidden rounded-2xl relative aspect-[16/10]">
+            <img src="images/gallery-1.jpg" alt="Långritt i Pandoria" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 cursor-pointer" onclick="openLightbox('images/gallery-1.jpg', 'Äventyrsritt i Pandoria')">
+            <div class="absolute bottom-3 left-3 px-3 py-1 rounded-full bg-black/40 backdrop-blur-md text-white text-[11px] font-medium">
+              ❄️ Äventyrsritt i Pandoria
+            </div>
+          </div>
+          <div class="p-3">
+            <h4 class="font-serif-elegant text-xl font-bold text-[#453039]">Magiska Ritter</h4>
+            <p class="text-xs text-[#7A636E] mt-1">Uteritter tillsammans där vi utforskar Jorviks vackraste vyer utan stress eller prestationskrav.</p>
+          </div>
+        </div>
+
+        <!-- Bild 2: Rosa Picknick -->
+        <div class="photo-card pearl-card p-3 rounded-3xl bg-white border border-[#F6DCE5] overflow-hidden group">
+          <div class="overflow-hidden rounded-2xl relative aspect-[16/10]">
+            <img src="images/gallery-3.jpg" alt="Fika och picknick i det gröna" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 cursor-pointer" onclick="openLightbox('images/gallery-3.jpg', 'Rosa fika och picknick')">
+            <div class="absolute bottom-3 left-3 px-3 py-1 rounded-full bg-black/40 backdrop-blur-md text-white text-[11px] font-medium">
+              🍰 Rosa Picknick & Fika
+            </div>
+          </div>
+          <div class="p-3">
+            <h4 class="font-serif-elegant text-xl font-bold text-[#453039]">Mysiga Pratstunder</h4>
+            <p class="text-xs text-[#7A636E] mt-1">Vi samlas, kopplar av och pratar om allt mellan himmel och jord med tårta och gott sällskap.</p>
+          </div>
+        </div>
+
+        <!-- Bild 3: Lek & Skoj i Paviljongen -->
+        <div class="photo-card pearl-card p-3 rounded-3xl bg-white border border-[#F6DCE5] overflow-hidden group">
+          <div class="overflow-hidden rounded-2xl relative aspect-[16/10]">
+            <img src="images/gallery-2.jpg" alt="Lekfull samling i paviljongen" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 cursor-pointer" onclick="openLightbox('images/gallery-2.jpg', 'Lekfull samling i paviljongen')">
+            <div class="absolute bottom-3 left-3 px-3 py-1 rounded-full bg-black/40 backdrop-blur-md text-white text-[11px] font-medium">
+              🎠 Skoj & Skratt
+            </div>
+          </div>
+          <div class="p-3">
+            <h4 class="font-serif-elegant text-xl font-bold text-[#453039]">Lekfullhet</h4>
+            <p class="text-xs text-[#7A636E] mt-1">Att ha roligt och släppa all vardagsstress är kärnan i varför vi spelar tillsammans.</p>
+          </div>
+        </div>
+
+        <!-- Bild 4: Dans & Fest -->
+        <div class="photo-card pearl-card p-3 rounded-3xl bg-white border border-[#F6DCE5] overflow-hidden group">
+          <div class="overflow-hidden rounded-2xl relative aspect-[16/10]">
+            <img src="images/gallery-4.png" alt="Dansgolv och fest" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 cursor-pointer" onclick="openLightbox('images/gallery-4.png', 'Fest på dansgolvet')">
+            <div class="absolute bottom-3 left-3 px-3 py-1 rounded-full bg-black/40 backdrop-blur-md text-white text-[11px] font-medium">
+              🪩 Danskväll
+            </div>
+          </div>
+          <div class="p-3">
+            <h4 class="font-serif-elegant text-xl font-bold text-[#453039]">Festliga Kvällar</h4>
+            <p class="text-xs text-[#7A636E] mt-1">När kvällen kommer drar vi igång musiken på dansgolvet och firar helgen ihop!</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- Om oss sektion -->
-  <section id="om-oss" class="py-20 px-6 bg-gradient-to-b from-[#FAF7F7] via-[#FFF9FB] to-[#FAF7F7]">
+  <section id="om-oss" class="py-20 px-6">
     <div class="max-w-4xl mx-auto">
       <div class="text-center mb-14">
         <span class="text-xs uppercase tracking-[0.25em] text-[#B27F93] font-semibold">Om Ice Pearls</span>
@@ -170,7 +263,7 @@
   </section>
 
   <!-- Roller & Mästare sektion -->
-  <section id="roller" class="py-20 px-6">
+  <section id="roller" class="py-20 px-6 bg-gradient-to-b from-[#FAF7F7] via-[#FFF9FB] to-[#FAF7F7]">
     <div class="max-w-4xl mx-auto">
       <div class="text-center mb-14">
         <span class="text-xs uppercase tracking-[0.25em] text-[#B27F93] font-semibold">Vår Filosofi</span>
@@ -216,7 +309,7 @@
   </section>
 
   <!-- Ledning sektion -->
-  <section id="ledning" class="py-20 px-6 bg-gradient-to-b from-[#FAF7F7] via-[#FFF8FA] to-[#FAF7F7]">
+  <section id="ledning" class="py-20 px-6">
     <div class="max-w-4xl mx-auto">
       <div class="text-center mb-14">
         <span class="text-xs uppercase tracking-[0.25em] text-[#B27F93] font-semibold">Kontakt</span>
@@ -250,7 +343,7 @@
   </section>
 
   <!-- Klubboutfit & Häst sektion -->
-  <section id="klubboutfit" class="py-20 px-6">
+  <section id="klubboutfit" class="py-20 px-6 bg-gradient-to-b from-[#FAF7F7] via-[#FFF9FB] to-[#FAF7F7]">
     <div class="max-w-4xl mx-auto">
       <div class="text-center mb-14">
         <span class="text-xs uppercase tracking-[0.25em] text-[#B27F93] font-semibold">Vår Estetik</span>
@@ -287,7 +380,7 @@
   </section>
 
   <!-- Ansökningsformulär sektion -->
-  <section id="ansok" class="py-20 px-6 bg-gradient-to-b from-[#FAF7F7] via-[#FFF9FB] to-[#FAF7F7]">
+  <section id="ansok" class="py-20 px-6">
     <div class="max-w-2xl mx-auto">
       <div class="pearl-card p-8 md:p-12 rounded-3xl border border-[#F8D2DF] shadow-md relative">
         <div class="text-center mb-8">
@@ -367,6 +460,17 @@
     </div>
   </footer>
 
+  <!-- ==================== LIGHTBOX MODAL FÖR BILDER ==================== -->
+  <div id="lightboxModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4 cursor-pointer" onclick="closeLightbox()">
+    <div class="max-w-4xl max-h-[90vh] relative" onclick="event.stopPropagation()">
+      <button onclick="closeLightbox()" class="absolute -top-12 right-0 text-white text-2xl hover:text-pink-200">
+        ✕ Stäng
+      </button>
+      <img id="lightboxImg" src="" alt="Förstoring" class="max-w-full max-h-[85vh] rounded-2xl shadow-2xl border border-white/20">
+      <p id="lightboxCaption" class="text-center text-white text-xs mt-3 font-medium tracking-wider"></p>
+    </div>
+  </div>
+
   <!-- ==================== ADMINPORTAL MODAL ==================== -->
   <div id="adminModal" class="fixed inset-0 z-50 hidden bg-black/40 backdrop-blur-sm flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-hidden flex flex-col shadow-2xl border border-[#F7D4E1]">
@@ -435,6 +539,16 @@
   <script>
     const ADMIN_PW = 'loop26';
     let currentAuthToken = localStorage.getItem('ice_pearls_admin_auth') || '';
+
+    // ================= LIGHTBOX FÖR BILDER =================
+    function openLightbox(src, caption) {
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightboxCaption').innerText = caption || '';
+      document.getElementById('lightboxModal').classList.remove('hidden');
+    }
+    function closeLightbox() {
+      document.getElementById('lightboxModal').classList.add('hidden');
+    }
 
     // ================= SÖKNING / FORMULÄR =================
     async function handleApply(e) {
@@ -579,10 +693,10 @@
         <div class="p-4 rounded-2xl bg-[#FFF9FA] border border-[#F6DCE5] hover:border-[#E8A5BA] transition-all space-y-3">
           <div class="flex flex-wrap items-center justify-between gap-2 border-b border-[#F7E2E9] pb-2">
             <div class="flex items-center gap-2">
-              <span class="font-serif-elegant text-lg font-bold text-[#453039]">${escapeHtml(app.ssoName)}</span>
+              <span class="font-serif-elegant text-lg font-bold text-[#453039]">${escapeHtml(app.ssoName || app.sso_name)}</span>
               <span class="px-2 py-0.5 rounded-full text-[10px] font-semibold ${getStatusBadgeClass(app.status)}">${escapeHtml(app.status || 'Ny')}</span>
             </div>
-            <span class="text-[11px] text-[#A68896]">Mottagen: ${escapeHtml(app.submittedAt || '')}</span>
+            <span class="text-[11px] text-[#A68896]">Mottagen: ${escapeHtml(app.submittedAt || app.created_at || '')}</span>
           </div>
 
           <div class="grid sm:grid-cols-3 gap-2 text-xs">
@@ -638,7 +752,6 @@
         });
       } catch (e) {}
 
-      // Uppdatera även lokalt
       let apps = getLocalApplications();
       const app = apps.find(a => a.id === id);
       if (app) {
