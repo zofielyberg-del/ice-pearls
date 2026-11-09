@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ledningsportal • Ice Pearls</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap');
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #FAF8F8;
+      color: #4A4045;
+    }
+
+    .font-serif-elegant {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+    }
+
+    .pearl-gradient {
+      background: linear-gradient(135deg, #FFFFFF 0%, #FFF5F7 50%, #F9F6F0 100%);
+    }
+
+    .pearl-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(244, 203, 214, 0.5);
+      box-shadow: 0 10px 30px -10px rgba(230, 180, 195, 0.25);
+    }
+  </style>
+</head>
+<body class="bg-[#FAF7F7] min-h-screen flex flex-col justify-between selection:bg-[#FAD2E1] selection:text-[#633346]">
+
+  <!-- Header -->
+  <header class="bg-white/90 backdrop-blur-md border-b border-[#F3E2E6] py-5 px-6">
+    <div class="max-w-5xl mx-auto flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-[#FFF0F4] via-[#FFFFFF] to-[#FFF5F8] border border-[#FAD8E4] flex items-center justify-center p-1.5 shadow-sm">
+          <img src="horse-logo.png" alt="Ice Pearls Hästikon" class="w-full h-full object-contain">
+        </div>
+        <div>
+          <span class="font-serif-elegant text-xl tracking-wider font-semibold uppercase text-[#543843] block leading-none">Ice Pearls</span>
+          <span class="text-[9px] tracking-[0.25em] text-[#A27B8B] uppercase font-medium">Ledningsportal</span>
+        </div>
+      </a>
+
+      <div class="flex items-center gap-3">
+        <a href="/" class="text-xs text-[#8C6D7A] hover:text-[#522938] transition-colors">
+          ← Tillbaka till hemsidan
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="max-w-4xl w-full mx-auto p-6 flex-1 flex flex-col justify-center">
+
+    <!-- Inloggningsvy -->
+    <div id="loginView" class="pearl-card max-w-md w-full mx-auto p-8 md:p-10 rounded-3xl text-center">
+      <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-[#FFEAF1] text-3xl flex items-center justify-center border border-[#FAD0E0]">
+        🗝️
+      </div>
+      <h1 class="font-serif-elegant text-3xl font-semibold text-[#48333D] mb-2">Ledningsportal</h1>
+      <p class="text-xs text-[#806974] mb-6">Endast för Scarlett & Linnea. Ange lösenordet för att se inkomna ansökningar.</p>
+
+      <form onsubmit="handleLogin(event)" class="space-y-4">
+        <div>
+          <input type="password" id="passwordInput" required placeholder="Ange lösenord..." class="w-full px-4 py-3.5 rounded-xl bg-[#FAF7F7] border border-[#F2D1DC] text-xs focus:outline-none focus:border-[#E597AE] text-center tracking-widest text-sm transition-colors">
+        </div>
+        <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#F7BACD] via-[#F4A8BF] to-[#F193AF] hover:opacity-95 text-white text-xs font-semibold uppercase tracking-wider shadow-sm transition-all">
+          Logga in
+        </button>
+      </form>
+      <p id="loginError" class="text-xs text-rose-500 mt-4 hidden font-medium">Felaktigt lösenord, försök igen.</p>
+    </div>
+
+    <!-- Dashboard / Ansökningslista -->
+    <div id="dashboardView" class="hidden space-y-6 py-6">
+      <div class="pearl-card p-6 rounded-3xl flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <span class="text-[10px] uppercase tracking-widest text-[#9C7585] font-semibold block">Översikt</span>
+          <h2 class="font-serif-elegant text-3xl font-bold text-[#453039]">Inkomna Medlemsansökningar</h2>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="px-3 py-1 rounded-full bg-[#FFEBF2] text-[#915B6F] text-xs font-bold border border-[#FAD0E0]">
+            Totalt: <span id="appCount">0</span>
+          </span>
+          <button onclick="loadApplications()" class="px-4 py-2 rounded-xl border border-[#F2D1DC] bg-white text-xs font-medium text-[#705662] hover:bg-[#FFF5F8] transition-all">
+            🔄 Uppdatera
+          </button>
+          <button onclick="handleLogout()" class="px-4 py-2 rounded-xl bg-[#FAF0F4] text-xs font-medium text-[#965D73] hover:bg-[#FBE4EC] transition-all">
+            Logga ut
+          </button>
+        </div>
+      </div>
+
+      <div id="appsList" class="space-y-4">
+        <!-- Renderas dynamiskt -->
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Sidfot -->
+  <footer class="py-6 text-center text-[11px] text-[#A68F9A]">
+    Ice Pearls • Sekretessbelagd ledningsportal
+  </footer>
+
+  <script>
+    const ADMIN_PW = 'loop26';
+    let currentAuth = localStorage.getItem('ice_pearls_admin_auth') || '';
+
+    window.addEventListener('DOMContentLoaded', () => {
+      if (currentAuth === ADMIN_PW) {
+        showDashboard();
+      }
+    });
+
+    function handleLogin(e) {
+      e.preventDefault();
+      const entered = document.getElementById('passwordInput').value.trim();
+      if (entered === ADMIN_PW) {
+        currentAuth = ADMIN_PW;
+        localStorage.setItem('ice_pearls_admin_auth', ADMIN_PW);
+        showDashboard();
+      } else {
+        document.getElementById('loginError').classList.remove('hidden');
+      }
+    }
+
+    function handleLogout() {
+      currentAuth = '';
+      localStorage.removeItem('ice_pearls_admin_auth');
+      document.getElementById('dashboardView').classList.add('hidden');
+      document.getElementById('loginView').classList.remove('hidden');
+      document.getElementById('passwordInput').value = '';
+      document.getElementById('loginError').classList.add('hidden');
+    }
+
+    function showDashboard() {
+      document.getElementById('loginView').classList.add('hidden');
+      document.getElementById('dashboardView').classList.remove('hidden');
+      loadApplications();
+    }
+
+    async function loadApplications() {
+      const container = document.getElementById('appsList');
+      container.innerHTML = '<p class="text-center py-10 text-xs text-[#8F7480]">Hämtar ansökningar...</p>';
+
+      let apps = [];
+      try {
+        const res = await fetch('/api/applications', {
+          headers: { 'Authorization': `Bearer ${currentAuth}` }
+        });
+        if (res.ok) {
+          apps = await res.json();
+        } else {
+          apps = getLocalApps();
+        }
+      } catch (e) {
+        apps = getLocalApps();
+      }
+
+      renderApps(apps);
+    }
+
+    function getLocalApps() {
+      return JSON.parse(localStorage.getItem('ice_pearls_applications') || '[]');
+    }
+
+    function renderApps(apps) {
+      const container = document.getElementById('appsList');
+      document.getElementById('appCount').innerText = apps.length;
+
+      if (!apps || apps.length === 0) {
+        container.innerHTML = `
+          <div class="pearl-card p-12 text-center rounded-3xl">
+            <span class="text-3xl block mb-2">💌</span>
+            <p class="text-sm font-semibold text-[#4E3942]">Inga ansökningar inkomna än</p>
+            <p class="text-xs text-[#8C7681] mt-1">Så fort någon skickar in en ansökan på hemsidan visas den här.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = apps.map(app => `
+        <div class="pearl-card p-6 rounded-3xl space-y-4 hover:border-[#E8A5BA] transition-all">
+          <div class="flex flex-wrap items-center justify-between gap-3 border-b border-[#F7E2E9] pb-3">
+            <div class="flex items-center gap-3">
+              <span class="font-serif-elegant text-2xl font-bold text-[#453039]">${escapeHtml(app.ssoName || app.sso_name)}</span>
+              <span class="px-3 py-1 rounded-full text-xs font-semibold ${getStatusBadgeClass(app.status)}">${escapeHtml(app.status || 'Ny')}</span>
+            </div>
+            <span class="text-xs text-[#A68896]">Inskickad: ${escapeHtml(app.submittedAt || app.created_at || '')}</span>
+          </div>
+
+          <div class="grid sm:grid-cols-3 gap-3 text-xs">
+            <div class="bg-[#FFF8FA] p-3 rounded-2xl border border-[#F8E3EC]">
+              <span class="text-[10px] text-[#A38391] uppercase block font-medium">Ålder</span>
+              <strong class="text-sm text-[#4E3942]">${escapeHtml(app.age)}</strong>
+            </div>
+            <div class="bg-[#FFF8FA] p-3 rounded-2xl border border-[#F8E3EC]">
+              <span class="text-[10px] text-[#A38391] uppercase block font-medium">SSO-Level</span>
+              <strong class="text-sm text-[#4E3942]">${escapeHtml(app.level)}</strong>
+            </div>
+            <div class="bg-[#FFF8FA] p-3 rounded-2xl border border-[#F8E3EC]">
+              <span class="text-[10px] text-[#A38391] uppercase block font-medium">Discord</span>
+              <strong class="text-sm text-[#4E3942]">${escapeHtml(app.discord || '-')}</strong>
+            </div>
+          </div>
+
+          <div class="bg-[#FFF8FA] p-4 rounded-2xl border border-[#F8E3EC] text-xs">
+            <span class="text-[10px] text-[#A38391] uppercase block mb-1 font-semibold">Motivering från sökande:</span>
+            <p class="text-[#634E57] leading-relaxed whitespace-pre-wrap">${escapeHtml(app.motivation)}</p>
+          </div>
+
+          <div class="flex flex-wrap items-center justify-between gap-3 pt-1 text-xs">
+            <div class="flex items-center gap-2">
+              <span class="text-xs text-[#8C7480] font-medium">Ändra status:</span>
+              <button onclick="changeStatus('${app.id}', 'Ny')" class="px-3 py-1 rounded-lg bg-white border border-[#E9C4D3] text-[#785464] hover:bg-[#FFEBF1] transition-colors">Ny</button>
+              <button onclick="changeStatus('${app.id}', 'Kontaktad')" class="px-3 py-1 rounded-lg bg-white border border-[#E9C4D3] text-[#785464] hover:bg-[#FFEBF1] transition-colors">Kontaktad</button>
+              <button onclick="changeStatus('${app.id}', 'Godkänd')" class="px-3 py-1 rounded-lg bg-white border border-[#E9C4D3] text-[#785464] hover:bg-[#FFEBF1] transition-colors">Godkänd</button>
+            </div>
+            <button onclick="removeApp('${app.id}')" class="text-rose-500 hover:text-rose-700 text-xs font-medium underline">
+              Ta bort ansökan
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function getStatusBadgeClass(status) {
+      if (status === 'Godkänd') return 'bg-emerald-100 text-emerald-800 border border-emerald-200';
+      if (status === 'Kontaktad') return 'bg-amber-100 text-amber-800 border border-amber-200';
+      return 'bg-[#FFE8F0] text-[#8F556B] border border-[#FAD0E0]';
+    }
+
+    async function changeStatus(id, newStatus) {
+      try {
+        await fetch(`/api/applications/${id}`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${currentAuth}`
+          },
+          body: JSON.stringify({ status: newStatus })
+        });
+      } catch (e) {}
+
+      let apps = getLocalApps();
+      const app = apps.find(a => a.id === id);
+      if (app) {
+        app.status = newStatus;
+        localStorage.setItem('ice_pearls_applications', JSON.stringify(apps));
+      }
+      loadApplications();
+    }
+
+    async function removeApp(id) {
+      if (!confirm('Vill du verkligen ta bort denna ansökan?')) return;
+      try {
+        await fetch(`/api/applications/${id}`, {
+          method: 'DELETE',
+          headers: { 'Authorization': `Bearer ${currentAuth}` }
+        });
+      } catch (e) {}
+
+      let apps = getLocalApps();
+      apps = apps.filter(a => a.id !== id);
+      localStorage.setItem('ice_pearls_applications', JSON.stringify(apps));
+      loadApplications();
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+  </script>
+</body>
+</html>
